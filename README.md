@@ -4,7 +4,12 @@ This is a Go implementation of the [CLC v1 API](https://www.ctl.io/api-docs/v1).
 
 ## Getting started
 
-Try some of the examples in the `examples/` folder, which serve to illustrate individual API calls.
+Get this package from inside your `$GOPATH`:
+```sh
+> go get -d   github.com/grrtrr/clcv1
+```
+
+Try some of the examples in the `examples/` folder. These illustrate individual API calls.
 
 Most have help screens (`-h`). The library supports _debug output_ via `-d`.
 
