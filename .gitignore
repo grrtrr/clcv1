@@ -1,0 +1,4 @@
+# Credentials file
+credentials.json
+# generated binary libraries
+pkg/
