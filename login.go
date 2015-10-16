@@ -4,7 +4,7 @@
 package clcv1
 
 import (
-	"github.com/grrtrr/clcv1/utils/terminal"
+	"github.com/grrtrr/clcv1/utils"
 	"flag"
 	"os"
 )
@@ -55,7 +55,7 @@ func resolveApiCredentials(api_key, password string) (res_key, res_pass string, 
 		api_key = os.Getenv("CLC_V1_API_KEY")
 	}
 	if api_key == "" {
-		if api_key, err = terminal.PromptInput("API Key"); err != nil {
+		if api_key, err = utils.PromptInput("API Key"); err != nil {
 			return "", "", err
 		}
 	}
@@ -67,7 +67,7 @@ func resolveApiCredentials(api_key, password string) (res_key, res_pass string, 
 		password = os.Getenv("CLC_V1_API_PASS")
 	}
 	if password == "" {
-		if password, err = terminal.GetPass("API Password"); err != nil {
+		if password, err = utils.GetPass("API Password"); err != nil {
 			return "", "", err
 		}
 	}

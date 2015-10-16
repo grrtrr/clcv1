@@ -1,8 +1,7 @@
 /*
  * Low-level terminal functions
- * See https://godoc.org/golang.org/x/crypto/ssh/terminal#Terminal.ReadPassword
  */
-package terminal
+package utils
 
 import (
 	"golang.org/x/crypto/ssh/terminal"
