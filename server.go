@@ -1,7 +1,7 @@
 package clcv1
 
 import (
-	"clcv1/microsoft"
+	"github.com/grrtrr/clcv1/microsoft"
 )
 
 // Server Object

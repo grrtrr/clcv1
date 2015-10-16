@@ -1,8 +1,8 @@
 package clcv1
 
 import (
+	"github.com/grrtrr/clcv1/microsoft"
 	"github.com/dustin/go-humanize"
-	"clcv1/microsoft"
 	"strings"
 	"time"
 	"fmt"
