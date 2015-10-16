@@ -4,7 +4,7 @@
 package clcv1
 
 import (
-	"utils/terminal"
+	"github.com/grrtrr/clcv1/utils/terminal"
 	"flag"
 	"os"
 )
