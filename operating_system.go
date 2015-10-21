@@ -50,6 +50,7 @@ func (o OperatingSystem) String() string {
 	case 43: return "Windows 2008 R2 Standard 64-Bit"
 	case 44: return "Windows 2008 R2 Enterprise 64-Bit"
 	case 45: return "Windows 2008 R2 Datacenter 64-Bit"
+	case 46: return "Windows 2012 R2 Standard 64-bit"
 	default:
 		return fmt.Sprintf("Unknown OS %d", o)
 	}
