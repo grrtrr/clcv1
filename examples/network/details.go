@@ -18,6 +18,8 @@ import (
 func main() {
 	var acctAlias = flag.String("a", "",       "Account alias of the account in question")
 	var location  = flag.String("l", "",       "Data centre alias of the network (uses Home Data Centre by default)")
+	var ips       = flag.Bool("ips",    false, "Also list IP addresses")
+	var unclaimed = flag.Bool("free",   false, "Also list unclaimed IP addresses (implies -ips)")
 	var simple    = flag.Bool("simple", false, "Use simple (debugging) output format")
 
 	flag.Usage = func() {
@@ -46,9 +48,13 @@ func main() {
 	if *simple {
 		utils.PrintStruct(details)
 	} else {
-		fmt.Printf("Details for %s (%s) at %s:", details.Name, details.Description, details.Location)
+		fmt.Printf("Details for %s (%s) at %s:\n", details.Name, details.Description, details.Location)
 		fmt.Printf("Gateway: %s\n", details.Gateway)
 		fmt.Printf("Netmask: %s\n", details.NetworkMask)
+
+		if !*ips && !*unclaimed {
+			return
+		}
 		fmt.Printf("IP addresses:\n")
 
 		table := tablewriter.NewWriter(os.Stdout)
@@ -58,7 +64,9 @@ func main() {
 
 		table.SetHeader([]string{ "Address", "Type", "Claimed", "Used by" })
 		for _, ip := range details.IPAddresses {
-			table.Append([]string{ ip.Address, ip.AddressType, fmt.Sprint(ip.IsClaimed), ip.ServerName })
+			if ip.IsClaimed || *unclaimed {
+				table.Append([]string{ ip.Address, ip.AddressType, fmt.Sprint(ip.IsClaimed), ip.ServerName })
+			}
 		}
 		table.Render()
 	}
