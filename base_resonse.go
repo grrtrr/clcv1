@@ -96,6 +96,12 @@ func (b *BaseResponse) Evaluate() (err error) {
 		err = fmt.Errorf("User not found (%s).", b.Message)
 	case 1706:
 		err = fmt.Errorf("Invalid user role(s) (%s).", b.Message)
+	case 1800:
+		err = fmt.Errorf("Account not found (%s).", b.Message)
+	case 1801:
+		err = fmt.Errorf("Invalid start date (%s).", b.Message)
+	case 1802:
+		err = fmt.Errorf("Invalid end date (%s).", b.Message)
 	default:
 		err = fmt.Errorf("%s (Status Code: %d).", b.Message, b.StatusCode)
 	}

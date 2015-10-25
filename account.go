@@ -28,7 +28,7 @@ type Account struct {
 	//       As of Sep 2015, this field seems no longer to be present.
 }
 
-// Gets details of the API user's account and any sub-accounts.
+// Get details of the API user's account and any sub-accounts.
 func (c *Client) GetAccounts() (accounts []Account, err error) {
 	err = c.getResponse("/Account/GetAccounts/JSON", nil, &struct {
 		BaseResponse
@@ -130,7 +130,7 @@ type AccountDetails struct {
 	SupportLevel		string
 }
 
-// Gets all of the contact information and settings for a given account.
+// Get all of the contact information and settings for a given account.
 func (c *Client) GetAccountDetails(accountAlias string) (details *AccountDetails, err error) {
 	details = new(AccountDetails)
 	req := struct { AccountAlias string } { accountAlias }
@@ -152,7 +152,7 @@ type Location struct {
 	Region	string
 }
 
-// Gets list of all valid data center location codes that are used in subsequent Account operations.
+// Get list of all valid data center location codes that are used in subsequent Account operations.
 func (c *Client) GetLocations() (loc []Location, err error) {
 	err = c.getResponse("/Account/GetLocations/JSON", nil, &struct {
 		BaseResponse

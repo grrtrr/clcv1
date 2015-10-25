@@ -21,8 +21,3 @@ _Credentials_ can be passed in one of two forms:
 2. Using _environment variables_:
   + `CLC_V1_API_KEY=<your-API-key>`,
   + `CLC_V1_API_PASS=<your-API-pass>`.
-
-## Todo
-
-Not every single detail of the API is implemented.
-For instance, the billing API calls have been left out.
