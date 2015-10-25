@@ -4,14 +4,14 @@
 package main
 
 import (
+	"github.com/grrtrr/clcv1/utils"
+	"github.com/grrtrr/clcv1"
+	"github.com/grrtrr/exit"
+	"path"
 	"flag"
 	"fmt"
-	"github.com/grrtrr/clcv1"
-	"github.com/grrtrr/clcv1/utils"
-	"github.com/grrtrr/exit"
 	"log"
 	"os"
-	"path"
 )
 
 func main() {

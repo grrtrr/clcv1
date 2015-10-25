@@ -4,15 +4,15 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+	"github.com/olekukonko/tablewriter"
 	"github.com/grrtrr/clcv1"
 	"github.com/grrtrr/exit"
-	"github.com/olekukonko/tablewriter"
+	"strings"
+	"path"
+	"flag"
+	"fmt"
 	"log"
 	"os"
-	"path"
-	"strings"
 )
 
 func main() {

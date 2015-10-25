@@ -27,7 +27,7 @@ func main() {
 
 	bh, err := client.GetBillingHistory(*acctAlias)
 	if err != nil {
-		exit.Fatalf("Failed to obtain billing history of %s: %s", *acctAlias, err)
+		exit.Fatalf("Failed to obtain billing history: %s", err)
 	}
 
 	fmt.Printf("Billing history for %s:\n", bh.AccountAlias)

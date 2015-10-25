@@ -4,14 +4,14 @@
 package main
 
 import (
-	"flag"
-	"fmt"
+	"github.com/olekukonko/tablewriter"
 	"github.com/grrtrr/clcv1"
 	"github.com/grrtrr/exit"
-	"github.com/olekukonko/tablewriter"
+	"path"
+	"flag"
+	"fmt"
 	"log"
 	"os"
-	"path"
 )
 
 func main() {
