@@ -94,8 +94,8 @@ func (c *Client) GetGroupByUUID(uuid, location, acctAlias string) (*HardwareGrou
 // Create a new Hardware Group.
 // @acctAlias:  The alias of the account to owns the group. Can be the parent alias or a sub-account alias.
 // @uuid: The unique identifier of the parent group.
-// @name: The name of the Hardware GroupYes
-// @desc: A description of the Hardware Group.If none is supplied, the Name will be used.
+// @name: The name of the Hardware Group.
+// @desc: A description of the Hardware Group. If none is supplied, the Name will be used.
 func (c *Client) CreateHardwareGroup(acctAlias, uuid, name, desc string) (g HardwareGroup, err error) {
 	req := struct { AccountAlias,  ParentUUID, Name, Description string } {
 		acctAlias, uuid, name, desc,
@@ -220,7 +220,7 @@ func (c *Client) RestoreHardwareGroup(uuid, parentUuid, acctAlias string) (reqId
 	return
 }
 
-// Deletes the Hardware Group along with all child groups and servers.
+// Delete the Hardware Group along with all child groups and servers.
 // @uuid:     The unique identifier of the Hardware Group to delete.
 // @accAlias: The alias of the account that owns the group.
 //            If not provided it will assume the account to which the API user is mapped.
