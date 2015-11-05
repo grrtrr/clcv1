@@ -19,7 +19,7 @@ func main() {
 	var location   = flag.String("l", "",     "Data centre alias")
 	var acctAlias  = flag.String("a", "",     "Account alias to use")
 	var template   = flag.String("t", "",     "The name of the template to create the server from")
-	var seed       = flag.String("s", "AUTO", "The seed for the server name (max 6 characters")
+	var seed       = flag.String("s", "AUTO", "The seed for the server name (max 6 characters)")
 	var desc       = flag.String("D", "",     "Description of the server")
 
 	var net        = flag.String("net",  "",        "Name of the Network to use")

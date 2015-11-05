@@ -25,7 +25,7 @@ func main() {
 	}
 
 	flag.Parse()
-	if flag.NArg() != 1 || *busId == "" || *busId == "" {
+	if flag.NArg() != 1 || *busId == "" || *devId == "" {
 		flag.Usage()
 		os.Exit(1)
 	}

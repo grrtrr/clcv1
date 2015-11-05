@@ -39,7 +39,7 @@ func (r UserRole) String() string {
 	case ServerScheduler:
 		return "Server-Scheduler"
 	default:
-		panic(fmt.Errorf("Unknown UserRole %v", r))
+		panic(fmt.Errorf("Unknown UserRole %d", int(r)))
 	}
 }
 
