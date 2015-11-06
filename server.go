@@ -341,6 +341,7 @@ func (c *Client) GetServerCredentials(name, acctAlias string) (creds ServerCrede
 	} { ServerCredentials: &creds })
 	return
 }
+
 // Update the Admin/Root password for a Server.
 // @name:      The name of the server
 // @acctAlias: The alias of the account that owns the servers (optional)
