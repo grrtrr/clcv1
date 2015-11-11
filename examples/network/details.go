@@ -25,7 +25,7 @@ func main() {
 	flag.Usage = func() {
 		fmt.Fprintf(os.Stderr, "usage: %s [options]  <Network-Name>\n", path.Base(os.Args[0]))
 		flag.PrintDefaults()
-		}
+	}
 
 	flag.Parse()
 	if flag.NArg() != 1 {
@@ -42,7 +42,7 @@ func main() {
 
 	details, err := client.GetNetworkDetails(flag.Arg(0), *acctAlias, *location)
 	if err != nil {
-		exit.Fatalf("Failed to list deployable networks: %s", err)
+		exit.Fatalf("Failed to query network details of %s: %s", flag.Arg(0), err)
 	}
 
 	if *simple {
