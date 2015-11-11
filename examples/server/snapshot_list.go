@@ -38,7 +38,7 @@ func main() {
 
 	snapshots, err := client.GetSnapshots(flag.Arg(0), *acctAlias)
 	if err != nil {
-		exit.Fatalf("Failed to list the snapshotss of server %q: %s", flag.Arg(0), err)
+		exit.Fatalf("Failed to list the snapshots of server %q: %s", flag.Arg(0), err)
 	}
 
 	fmt.Printf("Snapshots of %s:\n", flag.Arg(0))
