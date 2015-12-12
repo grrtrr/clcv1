@@ -8,6 +8,7 @@ import (
 	"github.com/grrtrr/clcv1/utils"
 	"github.com/grrtrr/clcv1"
 	"github.com/grrtrr/exit"
+	"path"
 	"flag"
 	"log"
 	"fmt"
@@ -15,13 +16,18 @@ import (
 )
 
 func main() {
-	var acctAlias = flag.String("a",    "",    "Account alias to use")
-	var simple    = flag.Bool("simple", false, "Use simple (debugging) output format")
+	var simple = flag.Bool("simple", false, "Use simple (debugging) output format")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "usage: %s <Account-Alias>\n", path.Base(os.Args[0]))
+		flag.PrintDefaults()
+	}
+
 	flag.Parse()
 
-	if *acctAlias == "" {
+	if flag.NArg() != 1 {
 		flag.Usage()
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	client, err := clcv1.NewClient(log.New(os.Stdout, "", log.LstdFlags | log.Ltime))
@@ -31,9 +37,9 @@ func main() {
 		exit.Fatalf("Login failed: %s", err)
 	}
 
-	users, err := client.GetUsers(*acctAlias)
+	users, err := client.GetUsers(flag.Arg(0))
 	if err != nil {
-		exit.Fatalf("Failed to list users of %s: %s", *acctAlias, err)
+		exit.Fatalf("Failed to list users of %s: %s", flag.Arg(0), err)
 	}
 
 	if len(users) == 0 {
