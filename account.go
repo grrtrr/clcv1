@@ -122,7 +122,7 @@ type AccountDetails struct {
 	// Flag indicating whether this account shares the networks of its parent.
 	ShareParentNetworks	bool
 
-	//  Indicator of support level for the account.
+	// Indicator of support level for the account.
 	// developer,
 	// legacy,
 	// professional,

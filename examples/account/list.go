@@ -4,7 +4,7 @@
 package main
 
 import (
-	"github.com/grrtrr/clcv1/utils"
+	"github.com/olekukonko/tablewriter"
 	"github.com/grrtrr/clcv1"
 	"github.com/grrtrr/exit"
 	"flag"
@@ -27,7 +27,19 @@ func main() {
 		exit.Fatalf("Failed to obtain account list: %s", err)
 	}
 
+	table := tablewriter.NewWriter(os.Stdout)
+	table.SetAutoFormatHeaders(false)
+	table.SetAlignment(tablewriter.ALIGN_LEFT)
+	table.SetAutoWrapText(true)
+
+	table.SetHeader([]string{ "Account", "Parent", "Location", "Business Name" })
 	for _, a := range accts {
-		utils.PrintStruct(a)
+		var acct = a.AccountAlias
+
+		if !a.IsActive {
+			acct += " (INACTIVE)"
+		}
+		table.Append([]string{ acct, a.ParentAlias, a.Location, a.BusinessName })
 	}
+	table.Render()
 }
