@@ -7,7 +7,8 @@ import (
 type UserRole int
 
 const (
-	ServerAdministrator  UserRole =  2
+	UnknownUserRole      UserRole =  0
+	ServerAdministrator           =  2
 	BillingManager                =  3
 	DNSManager                    =  8
 	AccountAdministrator          =  9
@@ -38,6 +39,8 @@ func (r UserRole) String() string {
 		return "Server-Operator"
 	case ServerScheduler:
 		return "Server-Scheduler"
+	case UnknownUserRole:
+		return "(undef)"
 	default:
 		panic(fmt.Errorf("Unknown UserRole %d", int(r)))
 	}

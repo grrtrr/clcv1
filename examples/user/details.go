@@ -48,7 +48,7 @@ func main() {
 		table := tablewriter.NewWriter(os.Stdout)
 		table.SetAutoFormatHeaders(false)
 		table.SetAlignment(tablewriter.ALIGN_LEFT)
-		table.SetAutoWrapText(false)
+		table.SetAutoWrapText(true)
 
 		table.SetHeader([]string{ "User", "SAML", "First", "Last", "Email", "Roles" })
 		table.Append([]string{
