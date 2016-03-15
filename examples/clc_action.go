@@ -1,6 +1,4 @@
-/*
- * Rewrite of the 'clc_action' bash script into go.
- */
+// Multi-function script for use with CLC servers and hardware groups.
 package main
 
 import (
@@ -44,7 +42,7 @@ func usage() {
 	os.Exit(0)
 }
 
-func action_map(server bool, client *clcv1.Client) map[string]func(string, string) (int, error) {
+func actionMap(server bool, client *clcv1.Client) map[string]func(string, string) (int, error) {
 	if server {
 		/* Server Action */
 		return map[string]func(string, string) (int, error){
@@ -75,7 +73,7 @@ func action_map(server bool, client *clcv1.Client) map[string]func(string, strin
 func main() {
 	var location  = flag.String("l", "", "Location to use for <Group-Name>")
 	var acctAlias = flag.String("a", "", "Account alias to use (to override default)")
-	var server_action bool
+	var serverAction bool
 	var action, where string
 
 	flag.Usage = usage
@@ -101,9 +99,9 @@ func main() {
 
 	/* If the first argument decodes as a hex value, assume it is a Hardware Group UUID */
 	if _, err := hex.DecodeString(where); err == nil {
-		server_action = false
+		serverAction = false
 	} else if utils.LooksLikeServerName(where) {
-		server_action = true
+		serverAction = true
 		if *location != "" {
 			fmt.Fprintf(os.Stderr, "WARNING: location (%s) ignored for %s\n", *location, where)
 		}
@@ -116,12 +114,12 @@ func main() {
 			where = group.UUID
 		}
 	} else {
-		server_action = true
+		serverAction = true
 	}
 
 	switch action {
 	case "show":
-		if server_action {
+		if serverAction {
 			showServer(client, where, *acctAlias)
 		} else {
 			showGroup(client, where, *acctAlias, *location)
@@ -132,23 +130,23 @@ func main() {
 	}
 
 	/* Long-running commands that return a RequestID */
-	handler, ok := action_map(server_action, client)[action]
+	handler, ok := actionMap(serverAction, client)[action]
 	if !ok {
 		exit.Fatalf("Unsupported action %s", action)
 	}
 
-	reqId, err := handler(where, *acctAlias)
+	reqID, err := handler(where, *acctAlias)
 	if err != nil {
 		exit.Fatalf("Command %q failed: %s", action, err)
 	}
 
-	fmt.Printf("Request ID for %q action: %d\n", action, reqId)
+	fmt.Printf("Request ID for %q action: %d\n", action, reqID)
 
 	locationStr := *location
-	if server_action {
+	if serverAction {
 		locationStr = utils.ExtractLocationFromServerName(where)
 	}
-	client.PollDeploymentStatus(reqId, locationStr, *acctAlias, 1)
+	client.PollDeploymentStatus(reqID, locationStr, *acctAlias, 1)
 }
 
 
